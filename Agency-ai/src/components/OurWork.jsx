@@ -1,0 +1,47 @@
+import assets from "../assets/assets";
+import Title from "./Title";
+
+const OurWork = () => {
+  const workData = [
+    {
+      name: "Mobile app marketing",
+      img: assets.work_mobile_app,
+      desc: "We turn bold ideas into powerful digital solutions that connect, engage...",
+    },
+    {
+      name: "Dashboar Management",
+      img: assets.work_dashboard_management,
+      desc: "We help you execute your plan and deliver result.",
+    },
+    {
+      name: "Fitness app promotion",
+      img: assets.work_fitness_app,
+      desc: "We help you create a marketing strategi that drives result.",
+    },
+  ];
+  return (
+    <div
+      id="our-work"
+      className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white"
+    >
+      <Title
+        title="Our latest work"
+        desc="From strategy to execution, we craft digital solution that move your business forward."
+      />
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+        {workData.map((work, index) => (
+          <div
+            key={index}
+            className="hover:scale-105 duration-500 transition-all cursor-pointer"
+          >
+            <img src={work.img} alt={work.name} className="w-full rounded-xl" />
+            <h2 className="mt-3 mb-2 text-lg font-semibold">{work.name}</h2>
+            <p className="text-sm opacity-60 w-5/6">{work.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default OurWork;
