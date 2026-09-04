@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { Toaster } from "react-hot-toast";
+import Teams from "./components/Teams";
 
 const App = () => {
   const dotRef = useRef(null);
@@ -55,6 +56,7 @@ const App = () => {
       <TrustedBy />
       <Services />
       <OurWork />
+      <Teams />
       <ContactUs />
       <Footer theme={theme} />
 
