@@ -46,3 +46,26 @@ CREATE TABLE agama(
     PRIMARY KEY(kd_agama)
 );
 
+DELIMITER //
+
+CREATE PROCEDURE inputAgama (
+    IN in_kd_agama CHAR(1),
+    IN in_nm_agama VARCHAR(10)
+)
+BEGIN
+    INSERT INTO agama (kd_agama, nm_agama) 
+    VALUES (in_kd_agama, in_nm_agama);
+END//
+
+DELIMITER ;
+
+
+CALL inputAgama ('1', 'Islam');
+CALL inputAgama ('2', 'Katholik');
+CALL inputAgama ('3', 'Protestan');
+CALL inputAgama ('4', 'Konghuchu');
+CALL inputAgama ('5', 'Hindu');
+CALL inputAgama ('6', 'Budha');
+
+SELECT * FROM agama;
+
