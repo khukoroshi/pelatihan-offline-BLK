@@ -1,9 +1,9 @@
 CREATE DATABASE latihan2;
 USE latihan2;
 CREATE TABLE pns (NIP int PRIMARY KEY, Nama varchar(50));
-
-ALTER TABLE pns
-	MODIFY NIP varchar(20) FIRST;
+-- perbaikan structure kolom di NIP menjadi char
+ALTER TABLE pns  
+	MODIFY NIP char(18) FIRST;
 
 INSERT pns(NIP, Nama) VALUES
 (197309172005011002, 'Mohamad Septiawan'),
@@ -17,26 +17,32 @@ SELECT * FROM pns;
 SET lc_time_names = 'id_ID';
 
 
--- 1973-09-17
--- 2005-01-10
--- 02
+-- 1973-09-17 tgl_lahir
+-- 2005-01 tgl_pns
+-- 1 jk
+-- 002 no_urut
+CREATE VIEW vw_pns as
 SELECT *, 
 DATE_FORMAT(
-	STR_TO_DATE(
-		LEFT(NIP, 8),
-        '%Y%m%d'
-    ),
+	LEFT(NIP, 8),
     '%W, %d %M %Y'
 ) 
 as tanggal_lahir,
 DATE_FORMAT(
-	STR_TO_DATE(
-		SUBSTRING(NIP, 9, 8),
-        '%Y%m%d'
-    ),
+	CONCAT(MID(NIP, 9, 6),'28'),
     '%M %Y'
 ) 
 as tanggal_pns, 
-RIGHT(NIP,2) as no_urut
+IF(MID(NIP, 15,1) = '1', 'Pria','Wanita') as jenis_kelamin,
+RIGHT(NIP,3) as no_urut
 FROM pns;
+
+SELECT * FROM vw_pns;
+
+
+CREATE TABLE agama(
+	kd_agama char(1),
+    nm_agama varchar(10),
+    PRIMARY KEY(kd_agama)
+);
 
