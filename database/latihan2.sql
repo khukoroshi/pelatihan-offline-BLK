@@ -46,19 +46,24 @@ CREATE TABLE agama(
     PRIMARY KEY(kd_agama)
 );
 
+ALTER TABLE agama
+	MODIFY nm_agama varchar(12);
+
 DELIMITER //
 
 CREATE PROCEDURE inputAgama (
     IN in_kd_agama CHAR(1),
-    IN in_nm_agama VARCHAR(10)
+    IN in_nm_agama VARCHAR(12)
 )
 BEGIN
-    INSERT INTO agama (kd_agama, nm_agama) 
+    INSERT agama (kd_agama, nm_agama) 
     VALUES (in_kd_agama, in_nm_agama);
 END//
 
 DELIMITER ;
 
+
+DROP PROCEDURE inputAgama;
 
 CALL inputAgama ('1', 'Islam');
 CALL inputAgama ('2', 'Katholik');
@@ -66,6 +71,38 @@ CALL inputAgama ('3', 'Protestan');
 CALL inputAgama ('4', 'Konghuchu');
 CALL inputAgama ('5', 'Hindu');
 CALL inputAgama ('6', 'Budha');
+CALL inputAgama ('7', 'Kepercayaan');
 
+-- Error Code: 1406. Data too long for column 'in_nm_agama' at row 1
+
+CREATE VIEW vw_agama as
 SELECT * FROM agama;
+
+-- --- ---- ----- ------
+
+SELECT * FROM vw_agama;
+
+SELECT * FROM pns;
+
+SELECT * FROM pns 
+	WHERE Nama like '%D_%';
+
+ALTER TABLE pns
+	ADD kode_agm CHAR(1);
+
+UPDATE pns 
+SET kode_agm = '1' 
+WHERE Nama LIKE 'N%';
+
+ALTER TABLE pns 
+	ADD CONSTRAINT fk_pns2agama FOREIGN KEY (kode_agm)
+	REFERENCES agama(kd_agama);
+    
+SELECT 	p.NIP, 
+		p.Nama, 
+        a.nm_agama
+FROM 	pns as p, 
+		agama as a
+WHERE	p.kode_agm = a.kd_agama;
+
 
