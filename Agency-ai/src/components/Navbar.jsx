@@ -1,10 +1,12 @@
 import { useState } from "react";
 import assets from "../assets/assets";
 import ThemeToggle from "./ThemeToggle";
+import itemNavbar from "../data/itemNavbar";
 import { motion } from "motion/react";
 
 const Navbar = ({ theme, setTheme }) => {
   const [sideBarOpen, setSideBarOpen] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
@@ -23,34 +25,16 @@ const Navbar = ({ theme, setTheme }) => {
           className="w-5 absolute right-4 top-4 sm:hidden cursor-pointer"
           onClick={() => setSideBarOpen(false)}
         />
-        <a
-          href="#"
-          className="sm:hover:border-b"
-          onClick={() => setSideBarOpen(false)}
-        >
-          Home
-        </a>
-        <a
-          href="#services"
-          className="sm:hover:border-b"
-          onClick={() => setSideBarOpen(false)}
-        >
-          Services
-        </a>
-        <a
-          href="#our-work"
-          className="sm:hover:border-b"
-          onClick={() => setSideBarOpen(false)}
-        >
-          Our Work
-        </a>
-        <a
-          href="#contact-us"
-          className="sm:hover:border-b"
-          onClick={() => setSideBarOpen(false)}
-        >
-          Contact Us
-        </a>
+        {itemNavbar.map((item, index) => (
+          <a
+            key={index}
+            href={item.link}
+            className="sm:hover:border-b capitalize"
+            onClick={() => setSideBarOpen(false)}
+          >
+            {item.title}
+          </a>
+        ))}
       </div>
       <div className="flex items-center gap-2 sm:gap-4">
         <ThemeToggle theme={theme} setTheme={setTheme} />
