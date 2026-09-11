@@ -49,6 +49,8 @@ CREATE TABLE agama(
 ALTER TABLE agama
 	MODIFY nm_agama varchar(12);
 
+DROP PROCEDURE inputAgama;
+
 DELIMITER //
 
 CREATE PROCEDURE inputAgama (
@@ -61,9 +63,6 @@ BEGIN
 END//
 
 DELIMITER ;
-
-
-DROP PROCEDURE inputAgama;
 
 CALL inputAgama ('1', 'Islam');
 CALL inputAgama ('2', 'Katholik');
@@ -92,7 +91,7 @@ ALTER TABLE pns
 
 UPDATE pns 
 SET kode_agm = '1' 
-WHERE Nama LIKE 'N%';
+WHERE Nama LIKE 'D%';
 
 ALTER TABLE pns 
 	ADD CONSTRAINT fk_pns2agama FOREIGN KEY (kode_agm)

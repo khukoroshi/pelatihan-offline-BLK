@@ -46,7 +46,7 @@ BEGIN
 			agama as a
 	WHERE	p.kode_agm = a.kd_agama;
 END//
-/*
+
 CREATE PROCEDURE tampilan_lengkap_pns()
 BEGIN
 	SELECT 	p.NIP, 
@@ -69,7 +69,7 @@ BEGIN
 			agama as a
 	WHERE	p.kode_agm = a.kd_agama;
 END//
-*/
+
 
 DELIMITER ;
 
