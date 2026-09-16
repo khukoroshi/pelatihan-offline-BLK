@@ -22,7 +22,7 @@ const SiswaTable = ({ siswaList, handleEdit, handDelete }) => {
                 <button class="btn-warning" onClick={() => handleEdit(siswa)}>
                   Edit
                 </button>
-                <button class="btn-danger" onClick={() => handDelete(siswa.id)}>
+                <button class="btn-danger" onClick={() => handDelete(siswa)}>
                   Hapus
                 </button>
               </td>
