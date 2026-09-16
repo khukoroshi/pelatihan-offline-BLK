@@ -3,7 +3,6 @@ const SiswaForm = ({
   isEditing,
   handleInputChange,
   handleSubmit,
-  resetForm,
 }) => {
   return (
     <div className="card">
@@ -45,11 +44,6 @@ const SiswaForm = ({
         <button type="submit" className="btn-primary">
           {isEditing ? "Update Data" : "Simpan Data"}
         </button>
-        {isEditing && (
-          <button type="button" onClick={resetForm} className="btn-secondary">
-            Batal
-          </button>
-        )}
       </form>
     </div>
   );
